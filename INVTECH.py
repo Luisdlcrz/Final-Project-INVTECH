@@ -536,10 +536,10 @@ if st.session_state.page == "final_page":
     # Ensure the risk tolerance level from the quiz is stored in the session state
    if "risk_tolerance_level" not in st.session_state:
     st.warning("Please complete the Risk Tolerance Quiz first to get stock suggestions.")
-    else:
+   else:
         risk_tolerance = st.session_state.risk_tolerance_level
     
-        # Stock recommendations based on risk tolerance
+    # Stock recommendations based on risk tolerance
         if risk_tolerance == "Low risk tolerance (i.e., conservative investor)":
             stock_options = ["VTI", "BND", "AGG", "XLP", "VZ"]  # Examples of low-risk stocks (broad market, bonds)
             st.write("Based on your low risk tolerance, we recommend considering the following stocks:")
