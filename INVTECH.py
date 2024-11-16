@@ -557,7 +557,7 @@ if st.session_state.page == "final_page":
             st.write("Based on your high risk tolerance, we recommend considering the following stocks:")
 
         # Input for user to add their own stock preferences
-        user_stock = st.text_input("Enter your own stock symbol (optional):", "")
+        user_stock = st.text_input("Enter your own stock symbol (optional):", "", "", "", "","")
 
         # Add the user input to the stock options if not empty
         if user_stock:
