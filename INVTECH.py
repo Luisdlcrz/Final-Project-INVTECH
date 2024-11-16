@@ -541,19 +541,19 @@ if st.session_state.page == "final_page":
 
         # Stock recommendations based on risk tolerance
         if risk_tolerance == "Low risk tolerance (i.e., conservative investor)":
-            stock_options = ["VTI", "BND", "AGG", "XLP", "VZ"]  # Examples of low-risk stocks (broad market, bonds)
+            stock_options = ["VTI", "BND", "AGG", "XLP", "VZ"]
             st.write("Based on your low risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "Below-average risk tolerance":
-            stock_options = ["VUG", "VO", "VEA", "KO", "PG"]  # Examples of below-average risk stocks (growth, value)
+            stock_options = ["VUG", "VO", "VEA", "KO", "PG"]
             st.write("Based on your below-average risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "Average/moderate risk tolerance":
-            stock_options = ["QQQ", "SPY", "IVV", "MSFT", "JNJ"]  # Examples of moderate risk stocks (tech, S&P 500)
+            stock_options = ["QQQ", "SPY", "IVV", "MSFT", "JNJ"]
             st.write("Based on your average risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "Above-average risk tolerance":
-            stock_options = ["ARKK", "TQQQ", "XLK", "TSLA", "NVDA"]  # Examples of above-average risk stocks (innovation, tech)
+            stock_options = ["ARKK", "TQQQ", "XLK", "TSLA", "NVDA"]
             st.write("Based on your above-average risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "High risk tolerance (i.e., aggressive investor)":
-            stock_options = ["FDN", "SPYD", "XLY", "AMZN", "BABA"]  # Examples of high-risk stocks (high-dividend, retail)
+            stock_options = ["FDN", "SPYD", "XLY", "AMZN", "BABA"]
             st.write("Based on your high risk tolerance, we recommend considering the following stocks:")
 
         # Input for user to add their own stock preferences
@@ -561,7 +561,7 @@ if st.session_state.page == "final_page":
 
         # Add the user input to the stock options if not empty
         if user_stock:
-            stock_options.append(user_stock.upper())  # Append the custom stock symbol, making sure it's uppercase
+            stock_options.append(user_stock.upper())
 
         # Input for stock selection (multiselect)
         selected_stocks = st.multiselect("Select Stocks:", stock_options)
@@ -578,14 +578,15 @@ if st.session_state.page == "final_page":
                 import riskfolio as rp
                 import matplotlib.pyplot as plt
 
+                # Download stock data and calculate daily returns
                 stock_data = yf.download(selected_stocks, start="2023-01-01")['Adj Close']
                 rets = stock_data.pct_change().dropna()  # Calculate daily returns
 
-                # Calculate optimal portfolio using riskfolio
+                # Create portfolio object and calculate stats
                 port = rp.Portfolio(returns=rets)
-                port.assets_stats(method_mu='hist', method_cov='hist')  # Historical mean and covariance
+                port.assets_stats(method_mu='hist', method_cov='hist')
 
-                # Weights in case of minimizing risk
+                # Optimization: Minimize risk
                 min_risk_weights = port.optimization(model='Classic', rm='MV', obj='MinRisk', rf=0, hist=True)
                 st.write("**Optimal Portfolio Weights (Minimizing Risk)**")
                 st.write(min_risk_weights.T)
@@ -595,6 +596,16 @@ if st.session_state.page == "final_page":
                 rp.plot_pie(min_risk_weights, title="Optimal Portfolio Composition (Minimizing Risk)", ax=ax)
                 st.pyplot(fig)
 
-                # Weights in case of maximizing returns (if needed)
+                # Optional: Maximizing returns section (commented out if not used)
                 # max_return_weights = port.optimization(model='Classic', rm='MV', obj='MaxRet', rf=0.5, hist=True)
-                # st.write("**Optimal Portfolio Weights (Maximiz
+                # st.write("**Optimal Portfolio Weights (Maximizing Returns)**")
+                # st.write(max_return_weights.T)
+
+                # Display portfolio composition for maximizing returns (if needed)
+                # fig, ax = plt.subplots(figsize=(10, 8))
+                # rp.plot_pie(max_return_weights, title="Optimal Portfolio Composition (Maximizing Returns)", ax=ax)
+                # st.pyplot(fig)
+
+            except Exception as e:
+                st.error(f"Error building portfolio: {e}")
+
