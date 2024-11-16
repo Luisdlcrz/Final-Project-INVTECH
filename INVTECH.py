@@ -534,11 +534,11 @@ if st.session_state.page == "final_page":
     #investment_amount = st.number_input("Enter total investment amount:", min_value=0.0, step=1000.0)
 
     # Ensure the risk tolerance level from the quiz is stored in the session state
-    if "risk_tolerance_level" not in st.session_state:
-        st.warning("Please complete the Risk Tolerance Quiz first to get stock suggestions.")
+   if "risk_tolerance_level" not in st.session_state:
+    st.warning("Please complete the Risk Tolerance Quiz first to get stock suggestions.")
     else:
         risk_tolerance = st.session_state.risk_tolerance_level
-
+    
         # Stock recommendations based on risk tolerance
         if risk_tolerance == "Low risk tolerance (i.e., conservative investor)":
             stock_options = ["VTI", "BND", "AGG", "XLP", "VZ"]  # Examples of low-risk stocks (broad market, bonds)
@@ -555,9 +555,21 @@ if st.session_state.page == "final_page":
         elif risk_tolerance == "High risk tolerance (i.e., aggressive investor)":
             stock_options = ["FDN", "SPYD", "XLY", "AMZN", "BABA"]  # Examples of high-risk stocks (high-dividend, retail)
             st.write("Based on your high risk tolerance, we recommend considering the following stocks:")
-
+    
+        # Input for user to add their own stock preferences
+        user_stock = st.text_input("Enter your own stock symbol (optional):", "")
+        
+        # Add the user input to the stock options if not empty
+        if user_stock:
+            stock_options.append(user_stock.upper())  # Append the custom stock symbol, making sure it's uppercase
+        
         # Input for stock selection (multiselect)
         selected_stocks = st.multiselect("Select Stocks:", stock_options)
+    
+        # Optionally display the selected stocks
+        if selected_stocks:
+            st.write("You selected the following stocks:", selected_stocks)
+
 
         # Proceed only if stocks are selected
         if selected_stocks:
