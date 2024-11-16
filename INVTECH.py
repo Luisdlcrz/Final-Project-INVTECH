@@ -530,14 +530,14 @@ if st.session_state.page == "page_2":
 if st.session_state.page == "final_page":
     st.title("Portfolio Builder")
 
-    # Investment amount input
-    #investment_amount = st.number_input("Enter total investment amount:", min_value=0.0, step=1000.0)
+# Investment amount input
+investment_amount = st.number_input("Enter total investment amount:", min_value=0.0, step=1000.0)
 
-    # Ensure the risk tolerance level from the quiz is stored in the session state
-   if "risk_tolerance_level" not in st.session_state:
+# Ensure the risk tolerance level from the quiz is stored in the session state
+if "risk_tolerance_level" not in st.session_state:
     st.warning("Please complete the Risk Tolerance Quiz first to get stock suggestions.")
-   else:
-        risk_tolerance = st.session_state.risk_tolerance_level
+else:
+    risk_tolerance = st.session_state.risk_tolerance_level
     
     # Stock recommendations based on risk tolerance
         if risk_tolerance == "Low risk tolerance (i.e., conservative investor)":
