@@ -541,19 +541,19 @@ if st.session_state.page == "final_page":
 
         # Stock recommendations based on risk tolerance
         if risk_tolerance == "Low risk tolerance (i.e., conservative investor)":
-            stock_options = ["VTI", "BND", "AGG", "XLP", "VZ", yf.ticker()]  # Examples of low-risk stocks (broad market, bonds)
+            stock_options = ["VTI", "BND", "AGG", "XLP", "VZ"]  # Examples of low-risk stocks (broad market, bonds)
             st.write("Based on your low risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "Below-average risk tolerance":
-            stock_options = ["VUG", "VO", "VEA", "KO", "PG", yf.ticker()]  # Examples of below-average risk stocks (growth, value)
+            stock_options = ["VUG", "VO", "VEA", "KO", "PG"]  # Examples of below-average risk stocks (growth, value)
             st.write("Based on your below-average risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "Average/moderate risk tolerance":
-            stock_options = ["QQQ", "SPY", "IVV", "MSFT", "JNJ", yf.ticker()]  # Examples of moderate risk stocks (tech, S&P 500)
+            stock_options = ["QQQ", "SPY", "IVV", "MSFT", "JNJ"]  # Examples of moderate risk stocks (tech, S&P 500)
             st.write("Based on your average risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "Above-average risk tolerance":
-            stock_options = ["ARKK", "TQQQ", "XLK", "TSLA", "NVDA", yf.ticker()]  # Examples of above-average risk stocks (innovation, tech)
+            stock_options = ["ARKK", "TQQQ", "XLK", "TSLA", "NVDA"]  # Examples of above-average risk stocks (innovation, tech)
             st.write("Based on your above-average risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "High risk tolerance (i.e., aggressive investor)":
-            stock_options = ["FDN", "SPYD", "XLY", "AMZN", "BABA", yf.ticker()]  # Examples of high-risk stocks (high-dividend, retail)
+            stock_options = ["FDN", "SPYD", "XLY", "AMZN", "BABA"]  # Examples of high-risk stocks (high-dividend, retail)
             st.write("Based on your high risk tolerance, we recommend considering the following stocks:")
 
         # Input for stock selection (multiselect)
