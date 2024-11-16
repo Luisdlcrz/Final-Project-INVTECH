@@ -544,19 +544,19 @@ if st.session_state.page == "final_page":
 
         # Stock recommendations based on risk tolerance
         if risk_tolerance == "Low risk tolerance (i.e., conservative investor)":
-            stock_options = ["VTI", "BND", "AGG", "XLP", "VZ"]
+            stock_options = [“GOLD”,“AEP”,“SO”,“CL”,“PG”]
             st.write("Based on your low risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "Below-average risk tolerance":
-            stock_options = ["VUG", "VO", "VEA", "KO", "PG"]
+            stock_options = [“JNJ”, “PEP”, “KO”, “PFE”,”WM”]
             st.write("Based on your below-average risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "Average/moderate risk tolerance":
-            stock_options = ["QQQ", "SPY", "IVV", "MSFT", "JNJ"]
+            stock_options = [“MSFT”,”SBUX”,”TXN”,”SNOW”,”NKE”]
             st.write("Based on your average risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "Above-average risk tolerance":
-            stock_options = ["ARKK", "TQQQ", "XLK", "TSLA", "NVDA"]
+            stock_options = [“RYA.IR”,”ABNB”,”CURLF” ,“LUMN”,“AAPL”]
             st.write("Based on your above-average risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "High risk tolerance (i.e., aggressive investor)":
-            stock_options = ["FDN", "SPYD", "XLY", "AMZN", "BABA"]
+            stock_options = [“NVDA”, “SQ”, “TSLA”, “ROKU”, “SHOP”]
             st.write("Based on your high risk tolerance, we recommend considering the following stocks:")
 
         # Input for user to add their own 5 stock preferences (comma-separated)
