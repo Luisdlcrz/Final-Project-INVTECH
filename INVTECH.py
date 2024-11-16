@@ -512,7 +512,10 @@ if st.session_state.page == "page_2":
             st.pyplot(plt)
 
         st.subheader("**Golden/Death Cross for Selected Stocks**")
-        st.write("The golden cross & death cross are two technical indicators that help signal potential trends on stock prices, based on the movement of two moving averages. Golden Cross: This occurs when a short-term moving average (50-day moving average) crosses above a long-term moving average (200-day) moving average). The golden cross generally is viewed as a bullish signal, suggesting that the stocks momentum is shifting upward and that a potential uptrend may be beginning. Time to buy! Death Cross: This is the opposite scenario, where the short-term moving average crosses below the long-term moving average. The death cross is considered a bearish signal, indicating that downward momentum may continue & that the stock could be entering a downtrend. Sell before it is too late!")
+        st.write('''
+        The golden cross & death cross are two technical indicators that help signal potential trends on stock prices, based on the movement of two moving averages. 
+        - **Golden Cross**: This occurs when a short-term moving average (50-day moving average) crosses above a long-term moving average (200-day) moving average). The golden cross generally is viewed as a bullish signal, suggesting that the stocks momentum is shifting upward and that a potential uptrend may be beginning. **Time to buy!** 
+        - **Death Cross**: This is the opposite scenario, where the short-term moving average crosses below the long-term moving average. The death cross is considered a bearish signal, indicating that downward momentum may continue & that the stock could be entering a downtrend. **Sell before it is too late!**''')
         plot_golden_death_cross(company1)
         plot_golden_death_cross(company2)
 
@@ -531,7 +534,7 @@ if st.session_state.page == "final_page":
     st.title("Portfolio Builder")
 
     # Investment amount input
-    investment_amount = st.number_input("Enter total investment amount:", min_value=0.0, step=1000.0)
+    # investment_amount = st.number_input("Enter total investment amount:", min_value=0.0, step=1000.0)
 
     # Ensure the risk tolerance level from the quiz is stored in the session state
     if "risk_tolerance_level" not in st.session_state:
