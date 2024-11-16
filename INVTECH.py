@@ -556,12 +556,13 @@ if st.session_state.page == "final_page":
             stock_options = ["FDN", "SPYD", "XLY", "AMZN", "BABA"]
             st.write("Based on your high risk tolerance, we recommend considering the following stocks:")
 
-        # Input for user to add their own stock preferences
-        user_stock = st.text_input("Enter your own stock symbol (optional):", "", "", "", "","")
-
-        # Add the user input to the stock options if not empty
-        if user_stock:
-            stock_options.append(user_stock.upper())
+        # Input for user to add their own 5 stock preferences (comma-separated)
+        user_stocks = st.text_input("Enter your own 5 stock symbols (comma-separated, e.g., AAPL, MSFT, TSLA, etc.):", "")
+        
+        if user_stocks:
+            # Split the user input string into a list of stock symbols and make sure it's uppercase
+            user_stock_list = [stock.strip().upper() for stock in user_stocks.split(",")]
+            stock_options.extend(user_stock_list)  # Add these stocks to the stock options list
 
         # Input for stock selection (multiselect)
         selected_stocks = st.multiselect("Select Stocks:", stock_options)
@@ -596,16 +597,7 @@ if st.session_state.page == "final_page":
                 rp.plot_pie(min_risk_weights, title="Optimal Portfolio Composition (Minimizing Risk)", ax=ax)
                 st.pyplot(fig)
 
-                # Optional: Maximizing returns section (commented out if not used)
-                # max_return_weights = port.optimization(model='Classic', rm='MV', obj='MaxRet', rf=0.5, hist=True)
-                # st.write("**Optimal Portfolio Weights (Maximizing Returns)**")
-                # st.write(max_return_weights.T)
-
-                # Display portfolio composition for maximizing returns (if needed)
-                # fig, ax = plt.subplots(figsize=(10, 8))
-                # rp.plot_pie(max_return_weights, title="Optimal Portfolio Composition (Maximizing Returns)", ax=ax)
-                # st.pyplot(fig)
-
             except Exception as e:
                 st.error(f"Error building portfolio: {e}")
+
 
