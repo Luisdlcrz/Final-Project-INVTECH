@@ -553,7 +553,7 @@ if st.session_state.page == "final_page":
             stock_options = [“MSFT”,”SBUX”,”TXN”,”SNOW”,”NKE”]
             st.write("Based on your average risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "Above-average risk tolerance":
-            stock_options = [“RYA.IR”,”ABNB”,”CURLF” ,“LUMN”,“AAPL”]
+            stock_options = [“BA”,”ABNB”,”CURLF” ,“LUMN”,“AAPL”]
             st.write("Based on your above-average risk tolerance, we recommend considering the following stocks:")
         elif risk_tolerance == "High risk tolerance (i.e., aggressive investor)":
             stock_options = [“NVDA”, “SQ”, “TSLA”, “ROKU”, “SHOP”]
